@@ -1,8 +1,25 @@
+import { useCallback, useEffect, useRef } from "react";
+
 function Home() {
+  const mapRef = useRef(null);
+
+  const initMap = useCallback(() => {
+    new window.google.maps.Map(mapRef.current, {
+      center: { lat: -34.397, lng: 150.644 },
+      zoom: 8,
+    });
+  }, [mapRef]);
+
+  useEffect(() => {
+    initMap();
+  }, [initMap]);
+
   return (
-    <h1 className="text-2xl font-bold underline">
-      지도 API 추가하고, 갔던 곳 핀 꽂기
-    </h1>
+    <div
+      className="map"
+      style={{ width: "100vw", height: "600px" }}
+      ref={mapRef}
+    ></div>
   );
 }
 
