@@ -9,20 +9,20 @@ const locations = [
 function Home() {
   const mapRef = useRef(null);
 
+  console.log(window.google.maps);
+
   const initMap = useCallback(() => {
     const map = new window.google.maps.Map(mapRef.current, {
       center: { lat: 40.397, lng: 150.644 },
       zoom: 2,
+      mapId: "DEMO_MAP_ID",
     });
 
-    const mapPin = "/mapPin.svg";
-
     locations.forEach((location) => {
-      new window.google.maps.Marker({
+      new window.google.maps.marker.AdvancedMarkerElement({
+        map,
         position: location.position,
         title: location.title,
-        map,
-        icon: mapPin,
       });
     });
   }, [mapRef]);
