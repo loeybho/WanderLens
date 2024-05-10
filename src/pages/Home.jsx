@@ -1,12 +1,29 @@
 import { useCallback, useEffect, useRef } from "react";
 
+const locations = [
+  { title: "vancouver", position: { lat: 49.2576182, lng: -123.2887105 } },
+  { title: "vietnam", position: { lat: 14.073694, lng: 108.413399 } },
+  { title: "mongolia", position: { lat: 47.0008262, lng: 103.0839711 } },
+];
+
 function Home() {
   const mapRef = useRef(null);
 
   const initMap = useCallback(() => {
-    new window.google.maps.Map(mapRef.current, {
-      center: { lat: -34.397, lng: 150.644 },
-      zoom: 8,
+    const map = new window.google.maps.Map(mapRef.current, {
+      center: { lat: 40.397, lng: 150.644 },
+      zoom: 2,
+    });
+
+    const mapPin = "/mapPin.svg";
+
+    locations.forEach((location) => {
+      new window.google.maps.Marker({
+        position: location.position,
+        title: location.title,
+        map,
+        icon: mapPin,
+      });
     });
   }, [mapRef]);
 
