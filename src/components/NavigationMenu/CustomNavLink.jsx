@@ -11,7 +11,7 @@ function CustomNavLink({ to, children }) {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        isActive ? "text-gray-600" : "text-gray-400 hover:text-gray-600"
+        isActive ? "text-yellow-400" : "text-gray-400 hover:text-yellow-400"
       }
     >
       {children}
